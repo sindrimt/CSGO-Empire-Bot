@@ -123,7 +123,7 @@ function main() {
     }
   }
   // hello
-  // Below is the code for the visible elements when activation the bot
+  // Below is the code for the visible elements when activation the botasdasd
 }
 function elements() {
   var termdiv = document.createElement("div");
