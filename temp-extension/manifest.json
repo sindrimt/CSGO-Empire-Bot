@@ -1,27 +1,32 @@
 {
-   
-    "manifest_version": 2,
-    "name": "Csgo Betting Bot",
-    "version": "0.1",
-    "description": "Automatic csgo betting bot",
-    "icons": { 
-        "16": "imgs/img1.png",
-        "48": "imgs/img1.png",
-       "128": "imgs/img1.png" },
-    "content_scripts": [
-      {
-        "matches": ["https://csgoempire.com/"],
-        
-        "css": ["style.css"]
-      }
-    ],
-    "background": {
-      "persistent": true,
-      "scripts": ["js/background.js"]
-    },
+  "manifest_version": 2,
+  "name": "Csgo Betting Bot",
+  "version": "0.1",
+  "description": "Automatic csgo betting bot",
+  "icons": {
+    "16": "imgs/img1.png",
+    "48": "imgs/img1.png",
+    "128": "imgs/img1.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://csgoempire.com/"],
 
-    "permissions": [
-      "contextMenus",
-      "activeTab"
-    ]
+      "css": ["style.css"],
+
+      "js": ["js/content.js"]
+    }
+  ],
+  "background": {
+    "persistent": true,
+    "scripts": ["js/background.js"]
+  },
+
+  "browser_action": {
+    "default_popup": "html/side1.html",
+
+    "default_title": "test"
+  },
+
+  "permissions": ["contextMenus", "activeTab"]
 }

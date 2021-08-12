@@ -25,12 +25,29 @@ mainDiv.style.zIndex = 1000;
 
 mainBtn.addEventListener("click", main);
 
-function main() {
-  console.log(
-    document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
-      .innerText
-  );
-}
-
 mainDiv.appendChild(mainBtn);
 bodyEL.appendChild(mainDiv);
+
+//
+var clickStartTracker = 0;
+
+var countdown = document.getElementsByClassName(
+  "text-2xl font-bold font-numeric"
+)[0].innerText;
+
+function main() {
+  console.log("main start");
+  console.log(countdown);
+  clickStartTracker++;
+  console.log(clickStartTracker);
+
+  //Husk å oppdatere clickStartTacker til 0 etter runde
+
+  /* if (clickStartTracker > 1) {
+    console.log("Kan ikke trykke start to ganger");
+    return;
+  }*/
+  console.log("starter likevel");
+}
+
+function placeBet() {}
