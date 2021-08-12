@@ -5,28 +5,49 @@
 /* Returnerer true hvis forrige resultat var CT, ellers false */ //*  document.getElementsByClassName("previous-rolls-item")[19].children[0].className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
 /* Navnet til CT-Coin */ //* document.getElementsByClassName("previous-rolls-item")[19].children[0].className
 /* Bet 0.01 (Bytt index for høyere value) */ //* document.getElementsByClassName("bet-input__control")[1]
+/* Balance */ //* document.getElementsByClassName("whitespace-no-wrap font-numeric")[1].innerText
 // HEI DETTE SKAL VISES I COMMITEN
 
 var bodyEL = document.querySelector("body");
 
-var termdiv = document.createElement("div");
-var termbtn = document.createElement("button");
-termbtn.innerHTML = "JEG ER EN KANPP";
+var mainDiv = document.createElement("div");
+var mainBtn = document.createElement("button");
+mainBtn.innerHTML = "JEG ER EN KANPP";
 
-termdiv.style.width = 470 + "px";
-termdiv.style.height = 300 + "px";
-termdiv.style.backgroundColor = "lightgrey";
+mainDiv.style.width = 470 + "px";
+mainDiv.style.height = 300 + "px";
+mainDiv.style.backgroundColor = "lightgrey";
 
-termdiv.style.position = "fixed";
-termdiv.style.top = 50 + "%";
-termdiv.style.left = 50 + "%";
-termdiv.style.zIndex = 1000;
+mainDiv.style.position = "fixed";
+mainDiv.style.top = 50 + "%";
+mainDiv.style.left = 50 + "%";
+mainDiv.style.zIndex = 1000;
 
-termdiv.addEventListener("click", termDiv);
+mainBtn.addEventListener("click", main);
 
-function termDiv() {
-  console.log(document.getElementsByClassName("bet-input__control")[1]);
+mainDiv.appendChild(mainBtn);
+bodyEL.appendChild(mainDiv);
+
+//
+var clickStartTracker = 0;
+
+var countdown = document.getElementsByClassName(
+  "text-2xl font-bold font-numeric"
+)[0].innerText;
+
+function main() {
+  console.log("main start");
+  console.log(countdown);
+  clickStartTracker++;
+  console.log(clickStartTracker);
+
+  //Husk å oppdatere clickStartTacker til 0 etter runde
+
+  /* if (clickStartTracker > 1) {
+    console.log("Kan ikke trykke start to ganger");
+    return;
+  }*/
+  console.log("starter likevel");
 }
 
-termdiv.appendChild(termbtn);
-bodyEL.appendChild(termdiv);
+function placeBet() {}
