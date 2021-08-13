@@ -28,26 +28,50 @@ mainBtn.addEventListener("click", main);
 mainDiv.appendChild(mainBtn);
 bodyEL.appendChild(mainDiv);
 
-//
-var clickStartTracker = 0;
-
-var countdown = document.getElementsByClassName(
-  "text-2xl font-bold font-numeric"
-)[0].innerText;
+// Globals init
+var clickStartTracker = 0,
+  currentBet = 0.2,
+  startingBet = 0;
 
 function main() {
+  // variabler som endres
+  var countdown = document.getElementsByClassName(
+    "text-2xl font-bold font-numeric"
+  )[0].innerText;
+
+  clickStartTracker++;
+
   console.log("main start");
   console.log(countdown);
-  clickStartTracker++;
   console.log(clickStartTracker);
+
+  placeBet(currentBet);
+  currentBet = 0.05;
+  placeBet(currentBet);
 
   //Husk å oppdatere clickStartTacker til 0 etter runde
 
-  /* if (clickStartTracker > 1) {
+  if (clickStartTracker > 1) {
     console.log("Kan ikke trykke start to ganger");
     return;
-  }*/
+  }
   console.log("starter likevel");
 }
 
-function placeBet() {}
+function placeBet(bet) {
+  console.log(bet);
+  //Passer på at man ikke kan bette om man ikke har nok balance
+  if (
+    bet <=
+    /* Balance */
+    document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
+      .innerText
+  ) {
+    /*   return;
+     */ for (i = 1; i <= bet * 100; i++) {
+      // Trykker på 0.01 bet helt til currentBet er oppfylt (Trenger bedre implementasjon)
+      //document.getElementsByClassName("bet-input__control")[1].click();
+      console.log("Clicked " + i + " times");
+    }
+  }
+}
