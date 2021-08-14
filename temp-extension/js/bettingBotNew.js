@@ -31,7 +31,36 @@ bodyEL.appendChild(mainDiv);
 // Globals init
 var clickStartTracker = 0,
   currentBet = 0.2,
-  startingBet = 0;
+  startingBet = 0.01,
+  processCounter = 0,
+  betMultiplier = 1;
+
+setInterval(function () {
+  if (processCounter == 1) {
+    if (isNewRound()) {
+      newRound();
+      processCounter = 2;
+    }
+  } else if (processCounter == 2) {
+    checkIfCT();
+    placeBet();
+  } else if (processCounter == 3) {
+    placeBet();
+
+    console.log("PLACEBET");
+  } else if (
+    document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
+      .innerText > 11
+  ) {
+    goNextStep = 4;
+  } else if (processCounter == 4) {
+    if (endOfRound()) {
+      console.log("ENDOFROUND");
+      document.getElementsByClassName("bet-btn")[0].click(); //Make Bet
+      processCounter = 1;
+    }
+  }
+}, 1000);
 
 function main() {
   // variabler som endres
@@ -45,7 +74,6 @@ function main() {
   console.log(countdown);
   console.log(clickStartTracker);
 
-  placeBet(currentBet);
   currentBet = 0.05;
   placeBet(currentBet);
 
@@ -62,16 +90,65 @@ function placeBet(bet) {
   console.log(bet);
   //Passer på at man ikke kan bette om man ikke har nok balance
   if (
-    bet <=
+    bet >=
     /* Balance */
     document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
       .innerText
   ) {
-    /*   return;
-     */ for (i = 1; i <= bet * 100; i++) {
+    for (i = 1; i <= bet * 100 * betMultiplier; i++) {
       // Trykker på 0.01 bet helt til currentBet er oppfylt (Trenger bedre implementasjon)
-      //document.getElementsByClassName("bet-input__control")[1].click();
+      document.getElementsByClassName("bet-input__control")[1].click();
       console.log("Clicked " + i + " times");
     }
+    document.getElementsByClassName("bet-btn")[0].click();
   }
+}
+
+function newRound() {
+  variablesInit();
+  console.log("New round started");
+}
+
+function checkIfCT() {
+  //If win, return til New round
+  if (
+    document.getElementsByClassName("previous-rolls-item")[19].children[0]
+      .className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
+  ) {
+    placeBet(currentBet); // Sjekker om bet er gyldig, så
+
+    betMultiplier = 1;
+    processCounter = 1;
+  }
+  //If lose, går til neste steg (makeDoubleBet)
+  else {
+    betMultiplier *= 2;
+    console.log("betMultiplier: " + betMultiplier);
+    processCounter = 3;
+  }
+}
+
+function makeDoubleBet() {
+  // Denne kjøres når roulette result er T-Coin (dobler forrige bet)
+  placeBet(currentBet);
+  document.getElementsByClassName("bet-btn")[0].click(); //Make Bet
+  processCounter = 1;
+}
+
+function isNewRound() {
+  document.getElementsByClassName("bet-input__control")[0].click();
+  if (
+    document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
+      .innerText > 17
+  )
+    return true;
+  else return false;
+}
+
+function variablesInit() {
+  clickStartTracker = 0;
+  startingBet = 0.01;
+  currentBet = startingBet;
+  processCounter = 0;
+  betMultiplier = 1;
 }
