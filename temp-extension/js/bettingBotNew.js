@@ -8,147 +8,150 @@
 /* Balance */ //* document.getElementsByClassName("whitespace-no-wrap font-numeric")[1].innerText
 // HEI DETTE SKAL VISES I COMMITEN
 
-var bodyEL = document.querySelector("body");
-
-var mainDiv = document.createElement("div");
-var mainBtn = document.createElement("button");
-mainBtn.innerHTML = "JEG ER EN KANPP";
-
-mainDiv.style.width = 470 + "px";
-mainDiv.style.height = 300 + "px";
-mainDiv.style.backgroundColor = "lightgrey";
-
-mainDiv.style.position = "fixed";
-mainDiv.style.top = 50 + "%";
-mainDiv.style.left = 50 + "%";
-mainDiv.style.zIndex = 1000;
-
-mainBtn.addEventListener("click", main);
-
-mainDiv.appendChild(mainBtn);
-bodyEL.appendChild(mainDiv);
-
 // Globals init
-var clickStartTracker = 0,
+
+var bodyEL = document.querySelector("body");
+var mainClickCounter = 0;
+
+/* var clickStartTracker = 0,
   currentBet = 0.2,
   startingBet = 0.01,
   processCounter = 0,
-  betMultiplier = 1;
-
-setInterval(function () {
-  if (processCounter == 1) {
-    if (isNewRound()) {
-      newRound();
-      processCounter = 2;
-    }
-  } else if (processCounter == 2) {
-    checkIfCT();
-    placeBet();
-  } else if (processCounter == 3) {
-    placeBet();
-
-    console.log("PLACEBET");
-  } else if (
-    document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
-      .innerText > 11
-  ) {
-    goNextStep = 4;
-  } else if (processCounter == 4) {
-    if (endOfRound()) {
-      console.log("ENDOFROUND");
-      document.getElementsByClassName("bet-btn")[0].click(); //Make Bet
-      processCounter = 1;
-    }
-  }
-}, 1000);
+  betMultiplier = 1; */
 
 function main() {
   // variabler som endres
-  var countdown = document.getElementsByClassName(
-    "text-2xl font-bold font-numeric"
-  )[0].innerText;
+  var goNextStep = 1;
+  var currentBet = 1;
+  var betMulti = 1;
 
-  clickStartTracker++;
+  setInterval(function () {
+    if (goNextStep == 1) {
+      if (newRoundStart()) {
+        console.log("NEWROUND");
+        goNextStep = 2;
+      }
+    } else if (goNextStep == 2) {
+      sjekkIfCT();
+    } else if (goNextStep == 3) {
+      placeBet();
 
-  console.log("main start");
-  console.log(countdown);
-  console.log(clickStartTracker);
-
-  currentBet = 0.05;
-  placeBet(currentBet);
-
+      console.log("PLACEBET");
+    } else if (
+      document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
+        .innerText > 11
+    ) {
+      goNextStep = 4;
+    } else if (goNextStep == 4) {
+      if (endOfRound()) {
+        console.log("ENDOFROUND");
+        document.getElementsByClassName("bet-btn")[0].click(); //Make Bet
+        goNextStep = 1;
+      }
+    }
+  }, 1000);
   //Husk å oppdatere clickStartTacker til 0 etter runde
 
-  if (clickStartTracker > 1) {
-    console.log("Kan ikke trykke start to ganger");
-    return;
-  }
-  console.log("starter likevel");
-}
+  function sjekkIfCT() {
+    //IF WIN
+    if (
+      document.getElementsByClassName("previous-rolls-item")[19].children[0]
+        .className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
+    ) {
+      console.log("Ez cash");
+      document.getElementsByClassName("bet-input__control")[1].click(); //BET001
 
-function placeBet(bet) {
-  console.log(bet);
-  //Passer på at man ikke kan bette om man ikke har nok balance
-  if (
-    bet >=
-    /* Balance */
-    document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
-      .innerText
-  ) {
-    for (i = 1; i <= bet * 100 * betMultiplier; i++) {
-      // Trykker på 0.01 bet helt til currentBet er oppfylt (Trenger bedre implementasjon)
-      document.getElementsByClassName("bet-input__control")[1].click();
-      console.log("Clicked " + i + " times");
+      //betMulti = 1;
+      currentBet = 1;
+      goNextStep = 0;
     }
-    document.getElementsByClassName("bet-btn")[0].click();
+    //IF LOSE
+    else {
+      //betMulti += 1;
+      currentBet *= 2;
+      console.log(betMulti);
+      goNextStep = 3;
+    }
   }
-}
 
-function newRound() {
-  variablesInit();
-  console.log("New round started");
-}
-
-function checkIfCT() {
-  //If win, return til New round
-  if (
-    document.getElementsByClassName("previous-rolls-item")[19].children[0]
-      .className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
-  ) {
-    placeBet(currentBet); // Sjekker om bet er gyldig, så
-
-    betMultiplier = 1;
-    processCounter = 1;
+  function newRoundStart() {
+    document.getElementsByClassName("bet-input__control")[0].click();
+    if (
+      document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
+        .innerText > 17
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
-  //If lose, går til neste steg (makeDoubleBet)
-  else {
-    betMultiplier *= 2;
-    console.log("betMultiplier: " + betMultiplier);
-    processCounter = 3;
+
+  function endOfRound() {
+    if (
+      document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
+        .innerText < 10
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
+
+  function placeBet() {
+    //var multi = betMulti*2;
+    for (i = 0; i < currentBet; i++) {
+      document.getElementsByClassName("bet-input__control")[1].click();
+    }
+    goNextStep = 4;
+
+    if (
+      currentBet >
+      document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
+        .innerText
+    ) {
+      console.log("Not enough money to bet");
+      return;
+    }
+  }
+  // hello
+  // Below is the code for the visible elements when activation the botasdasd
 }
 
-function makeDoubleBet() {
-  // Denne kjøres når roulette result er T-Coin (dobler forrige bet)
-  placeBet(currentBet);
-  document.getElementsByClassName("bet-btn")[0].click(); //Make Bet
-  processCounter = 1;
+function elements() {
+  var termdiv = document.createElement("div");
+  var termbtn = document.createElement("button");
+  termbtn.innerHTML = "JEG ER EN KANPP";
+
+  termbtn.addEventListener("click", startMain);
+
+  termdiv.style.width = 470 + "px";
+  termdiv.style.height = 300 + "px";
+  termdiv.style.backgroundColor = "lightgrey";
+
+  termdiv.style.position = "fixed";
+  termdiv.style.top = 50 + "%";
+  termdiv.style.left = 50 + "%";
+  //termdiv.style.transform = translate(-50+"%", -50+"%"); Gal syntax, men rett ide
+  termdiv.style.zIndex = 1000;
+
+  termdiv.appendChild(termbtn);
+  bodyEL.appendChild(termdiv);
 }
 
-function isNewRound() {
-  document.getElementsByClassName("bet-input__control")[0].click();
-  if (
-    document.getElementsByClassName("text-2xl font-bold font-numeric")[0]
-      .innerText > 17
-  )
-    return true;
-  else return false;
-}
+function startMain() {
+  //Kjører main function om knappen blir trykket
+  mainClickCounter += 1;
+  if (mainClickCounter > 1) {
+    console.log("YOU HAVE CLICKED THE BUTTON TOO MANY TIMES !§!!!!!!! ;(");
+    return;
+  } else {
+    console.log("BOTTEN STARTER NESTE RUNDE!!!!!!! :)");
+    console.log(mainClickCounter);
+  }
+  //var goNextStep = 1;
+  //var currentBet = 1; SETTER EVT VARIBALENE HER UTIFRA BRUKERINPUT
+  //var betMulti = 1;
 
-function variablesInit() {
-  clickStartTracker = 0;
-  startingBet = 0.01;
-  currentBet = startingBet;
-  processCounter = 0;
-  betMultiplier = 1;
+  main();
 }
+elements();
