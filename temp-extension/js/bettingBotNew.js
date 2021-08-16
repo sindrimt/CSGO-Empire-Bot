@@ -154,7 +154,7 @@ function main() {
 /* function initVariables() {
   processCounter = 1;
   currentBet = 1;
-  betMulti = 1;
+  betMulti = 1;ggg
 } */
 
 function elements() {
