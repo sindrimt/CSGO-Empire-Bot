@@ -153,7 +153,7 @@ function main() {
 //TODO gjør ingen ting (endra)
 /* function initVariables() {
   processCounter = 1;
-  currentBet = 1;
+  currentBet = 1;   r
   betMulti = 1;ggg
 } */
 
