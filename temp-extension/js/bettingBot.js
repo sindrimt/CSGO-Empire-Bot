@@ -71,7 +71,7 @@ function main() {
       document.getElementsByClassName("bet-input__control")[1].click(); //BET001
 
       //betMulti = 1;
-      currentBet = 1;
+      currentBet = 0.01;
       goNextStep = 0;
     }
     //IF LOSE

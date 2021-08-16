@@ -60,7 +60,7 @@ function main() {
         .className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
     ) {
       console.log("Ez cash");
-      document.getElementsByClassName("bet-input__control")[1].click(); //BET001
+      //document.getElementsByClassName("bet-input__control")[1].click(); //BET001
 
       //betMulti = 1;
       currentBet = 0.01;
@@ -97,9 +97,7 @@ function main() {
   }
   function numberToArray(number) {
     let array = number.toString().split(""); // Gjør om til streng
-
     var intedArray = array.map((x) => parseInt(x)); // Mapper til listen til int
-
     var filteredArray = intedArray.filter(function (value) {
       // Filtrer ut NaN fra listen
       return !Number.isNaN(value);
@@ -110,7 +108,7 @@ function main() {
   function placeBet() {
     // Passer på at man ikke kan bette mer enn man har
     if (
-      currentBet >
+      currentBet > //TODO ENDRE TILBAKE TIL > (BARE FOR TESTING NÅ)
       document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
         .innerText
     ) {
@@ -163,22 +161,84 @@ function elements() {
   //TODO Trenger store endringer, this is noob
   var termdiv = document.createElement("div");
   var termbtn = document.createElement("button");
+  var divHeader = document.createElement("div");
+  var currentBetButton = document.createElement("button");
+
+  currentBetButton.innerHTML = "set currentBet 0.55";
+
   termbtn.innerHTML = "JEG ER EN KANPP";
+  termbtn.style.right = 0 + "px";
 
   termbtn.addEventListener("click", startMain);
+  currentBetButton.addEventListener("click", increaseCurrentBet);
 
-  termdiv.style.width = 470 + "px";
-  termdiv.style.height = 300 + "px";
+  termdiv.style.width = 450 + "px";
+  termdiv.style.height = 180 + "px";
+  divHeader.id = "myDiv";
+
   termdiv.style.backgroundColor = "lightgrey";
 
-  termdiv.style.position = "fixed";
-  termdiv.style.top = 50 + "%";
-  termdiv.style.left = 50 + "%";
-  //termdiv.style.transform = translate(-50+"%", -50+"%"); Gal syntax, men rett ide
+  divHeader.style.width = 200 + "px";
+  divHeader.style.height = 80 + "px";
+  divHeader.id = "div";
+  divHeader.style.backgroundColor = "red";
+
+  termdiv.style.position = "absolute";
+  termdiv.style.top = 1 + "%";
+  termdiv.style.left = 40 + "%";
   termdiv.style.zIndex = 1000;
 
   termdiv.appendChild(termbtn);
+  termdiv.appendChild(divHeader);
   bodyEL.appendChild(termdiv);
+  termdiv.appendChild(currentBetButton);
+
+  // Basically copy fra w3 schools men heey
+  dragElement(termdiv);
+
+  function dragElement(elmnt) {
+    var pos1 = 0,
+      pos2 = 0,
+      pos3 = 0,
+      pos4 = 0;
+    if (document.getElementById(elmnt.id + "header")) {
+      // if present, the header is where you move the DIV from:
+      document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+    } else {
+      // otherwise, move the DIV from anywhere inside the DIV:
+      elmnt.onmousedown = dragMouseDown;
+    }
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // get the mouse cursor position at startup:
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      // call a function whenever the cursor moves:
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // calculate the new cursor position:
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      // set the element's new position:
+      elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+      elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+    }
+
+    function closeDragElement() {
+      // stop moving when mouse button is released:
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
 }
 
 function startMain() {
@@ -195,5 +255,10 @@ function startMain() {
   //var processCounter = 1;
   //var currentBet = 1; SETTER EVT VARIBALENE HER UTIFRA BRUKERINPUT
   //var betMulti = 1;
+}
+
+function increaseCurrentBet() {
+  currentBet = 0.55;
+  console.log(currentBet);
 }
 elements();
