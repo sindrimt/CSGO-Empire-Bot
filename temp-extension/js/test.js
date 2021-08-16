@@ -5,15 +5,27 @@
 //TODO Implementer denne med placeBet()
 // Deler opp tallet inn i komponenter i en array (tallene tilsvarer da tiendedelsplassen dems (gang med tiendedelsplassen))
 var myNumber = 0.66;
-function numberToArray(nyNumber) {
-  let array = myNumber.toString().split(""); //stringify the number, then make each digit an item in an array
+function numberToArray(number) {
+  let array = number.toString().split(""); // Gjør om til streng
 
-  var intedArray = array.map((x) => parseInt(x)); //convert all the items back into numbers
+  var intedArray = array.map((x) => parseInt(x)); // Mapper til listen til int
 
   var filteredArray = intedArray.filter(function (value) {
+    // Filtrer ut NaN fra listen
     return !Number.isNaN(value);
   });
-  console.log(filteredArray);
+  return filteredArray;
+}
+var returnLog = numberToArray(myNumber); // Initsialiserer funksjonen
+
+var increment = 1;
+// Valuen som ganges for hver iterasjon av forLøkka
+// Denne skal da klikke på knappen utifra resultat
+for (let index of returnLog) {
+  console.log(
+    "Clicked " + parseFloat(increment).toPrecision(1) + " : " + index + " Times"
+  );
+  increment *= 0.1;
 }
 
 /* var int = 0.66;

@@ -22,10 +22,11 @@ var mainClickCounter = 0;
 function main() {
   // variabler som endres
   var processCounter = 1;
-  var currentBet = 1;
+  var currentBet = 0.01;
   //TODO bruke betMulti til å gjøre opp for ghetto løsning med hvor my man skal bette (den gjør ingen ting nå)
-  var betMulti = 1;
+  placeBet();
 
+  // Denne kjøres hvert sekund, og sjekker statusen
   setInterval(function () {
     if (processCounter == 1) {
       if (newRoundStart()) {
@@ -62,14 +63,12 @@ function main() {
       document.getElementsByClassName("bet-input__control")[1].click(); //BET001
 
       //betMulti = 1;
-      currentBet = 1;
+      currentBet = 0.01;
       processCounter = 0;
     }
     //If lose
     else {
-      //betMulti += 1;
       currentBet *= 2;
-      console.log(betMulti);
       processCounter = 3;
     }
   }
@@ -96,16 +95,20 @@ function main() {
       return false;
     }
   }
+  function numberToArray(number) {
+    let array = number.toString().split(""); // Gjør om til streng
+
+    var intedArray = array.map((x) => parseInt(x)); // Mapper til listen til int
+
+    var filteredArray = intedArray.filter(function (value) {
+      // Filtrer ut NaN fra listen
+      return !Number.isNaN(value);
+    });
+    return filteredArray.reverse();
+  }
 
   function placeBet() {
-    //var multi = betMulti*2;
-    for (i = 0; i < currentBet; i++) {
-      // Currentbet i denne betydningen er at knappen 0.01 trykkes 1 gang (currentBet ganger)
-      //TODO Må endres, for dette er trash
-      document.getElementsByClassName("bet-input__control")[1].click();
-    }
-    processCounter = 4;
-
+    // Passer på at man ikke kan bette mer enn man har
     if (
       currentBet >
       document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
@@ -114,17 +117,47 @@ function main() {
       console.log("Not enough money to bet");
       return;
     }
+    // Ellers:
+    var returnLog = numberToArray(currentBet); // Initsialiserer funksjonen
+    console.log(returnLog);
+
+    var increment = 1;
+    var buttonNumber = 0;
+
+    // Valuen som ganges for hver iterasjon av forLøkka
+    // Denne skal da klikke på knappen utifra resultat
+    for (let index of returnLog) {
+      console.log(
+        "Clicked " +
+          parseFloat(increment).toPrecision(1) +
+          " : " +
+          index +
+          " Times"
+      );
+      for (i = 0; i < index; i++) {
+        console.log("Trykket index: " + index);
+        document
+          .getElementsByClassName("bet-input__control")
+          [buttonNumber + 1].click();
+      }
+      increment *= 0.1;
+      buttonNumber++;
+      // OK. Vet helt ærlig ikke helt hvorfor dette funker, men fack it
+    }
+
+    processCounter = 4;
+
+    // hello
+    // Below is the code for the visible elements when activation the botasdasd
   }
-  // hello
-  // Below is the code for the visible elements when activation the botasdasd
 }
 
 //TODO gjør ingen ting (endra)
-function initVariables() {
+/* function initVariables() {
   processCounter = 1;
   currentBet = 1;
   betMulti = 1;
-}
+} */
 
 function elements() {
   //TODO Trenger store endringer, this is noob
@@ -151,22 +184,16 @@ function elements() {
 function startMain() {
   //Kjører main function om knappen blir trykket
   mainClickCounter += 1;
-  if (
-    mainClickCounter > 1 ||
-    currentBet >
-      document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
-        .innerText
-  ) {
+  if (mainClickCounter > 1) {
     console.log("YOU HAVE CLICKED THE BUTTON TOO MANY TIMES !§!!!!!!! ;(");
     return;
   } else {
     console.log("BOTTEN STARTER NESTE RUNDE!!!!!!! :)");
     console.log(mainClickCounter);
+    main();
   }
   //var processCounter = 1;
   //var currentBet = 1; SETTER EVT VARIBALENE HER UTIFRA BRUKERINPUT
   //var betMulti = 1;
-
-  main();
 }
 elements();
