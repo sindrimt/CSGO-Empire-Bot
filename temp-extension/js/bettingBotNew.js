@@ -162,18 +162,19 @@ function elements() {
   var termdiv = document.createElement("div");
   var termbtn = document.createElement("button");
   var divHeader = document.createElement("div");
-  //var currentBetButton = document.createElement("button"); //TODO exempel på sette vars i boksen
+  var minimize = document.createElement("button"); //TODO exempel på sette vars i boksen
+  var maximize = document.createElement("button");
 
   termdiv.id = "mydiv";
   termbtn.id = "termbtn";
 
-  //currentBetButton.innerHTML = "set currentBet 0.55";
+  minimize.innerHTML = "Minimize";
+  maximize.innerHTML = "Maximize";
 
   termbtn.innerHTML = "Start Bot";
   // termbtn.style.right = 0 + "px";
 
   termbtn.addEventListener("click", startMain);
-  //currentBetButton.addEventListener("click", increaseCurrentBet);
 
   divHeader.id = "mydivheader";
   divHeader.textContent = "Drag me!";
@@ -188,12 +189,15 @@ function elements() {
   termdiv.style.top = 1 + "%";
   termdiv.style.left = 40 + "%";
   termdiv.style.zIndex = 1000;
+  minimize.addEventListener("click", minimizeDiv);
+  maximize.addEventListener("click", maximizeDiv);
 
   bodyEL.appendChild(termdiv);
   termdiv.appendChild(divHeader);
   termdiv.appendChild(termbtn);
 
-  //termdiv.appendChild(currentBetButton);
+  divHeader.appendChild(minimize);
+  divHeader.appendChild(maximize);
 
   // Basically copy fra w3 schools men heey
   dragElement(termdiv);
@@ -259,8 +263,16 @@ function startMain() {
   //var betMulti = 1;
 }
 
-function increaseCurrentBet() {
-  currentBet = 0.55;
-  console.log(currentBet);
+function minimizeDiv() {
+  var div = document.getElementById("mydiv");
+  var header = document.getElementById("mydivheader");
+  div.style.visibility = "hidden";
+  header.style.visibility = "visible";
+}
+function maximizeDiv() {
+  var div = document.getElementById("mydiv");
+  var header = document.getElementById("mydivheader");
+  div.style.visibility = "visible";
+  header.style.visibility = "visible";
 }
 elements();
