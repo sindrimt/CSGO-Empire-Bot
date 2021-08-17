@@ -162,36 +162,38 @@ function elements() {
   var termdiv = document.createElement("div");
   var termbtn = document.createElement("button");
   var divHeader = document.createElement("div");
-  var currentBetButton = document.createElement("button");
+  //var currentBetButton = document.createElement("button"); //TODO exempel på sette vars i boksen
 
-  currentBetButton.innerHTML = "set currentBet 0.55";
+  termdiv.id = "mydiv";
+  termbtn.id = "termbtn";
 
-  termbtn.innerHTML = "JEG ER EN KANPP";
-  termbtn.style.right = 0 + "px";
+  //currentBetButton.innerHTML = "set currentBet 0.55";
+
+  termbtn.innerHTML = "Start Bot";
+  // termbtn.style.right = 0 + "px";
 
   termbtn.addEventListener("click", startMain);
-  currentBetButton.addEventListener("click", increaseCurrentBet);
+  //currentBetButton.addEventListener("click", increaseCurrentBet);
 
-  termdiv.style.width = 450 + "px";
-  termdiv.style.height = 180 + "px";
-  divHeader.id = "myDiv";
+  divHeader.id = "mydivheader";
+  divHeader.textContent = "Drag me!";
 
-  termdiv.style.backgroundColor = "lightgrey";
-
-  divHeader.style.width = 200 + "px";
-  divHeader.style.height = 80 + "px";
-  divHeader.id = "div";
-  divHeader.style.backgroundColor = "red";
+  /*   termdiv.style.backgroundColor = "lightgrey";
+   */
+  /*  divHeader.style.width = 200 + "px";
+  divHeader.style.height = 80 + "px"; */
+  //divHeader.style.backgroundColor = "red";
 
   termdiv.style.position = "absolute";
   termdiv.style.top = 1 + "%";
   termdiv.style.left = 40 + "%";
   termdiv.style.zIndex = 1000;
 
-  termdiv.appendChild(termbtn);
-  termdiv.appendChild(divHeader);
   bodyEL.appendChild(termdiv);
-  termdiv.appendChild(currentBetButton);
+  termdiv.appendChild(divHeader);
+  termdiv.appendChild(termbtn);
+
+  //termdiv.appendChild(currentBetButton);
 
   // Basically copy fra w3 schools men heey
   dragElement(termdiv);
