@@ -28,5 +28,6 @@
     "default_title": "test"
   },
 
-  "permissions": ["contextMenus", "activeTab"]
+  "permissions": ["contextMenus", "activeTab"],
+  "web_accessible_resources": ["style.css"]
 }
