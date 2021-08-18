@@ -12,6 +12,8 @@
 
 var bodyEL = document.querySelector("body");
 var mainClickCounter = 0;
+var maxLoss = 0;
+var currentBet = 0;
 var newCurrentBet = 0; //TODO Herererre -----------------------
 /* var clickStartTracker = 0,
   currentBet = 0.2,
@@ -23,7 +25,7 @@ function main() {
   // variabler som endres
   var processCounter = 1;
   var currentBet = newCurrentBet; //TODO herererer -------------------
-  console.log("newCurrentBet: " + newCurrentBet);
+  console.log("CurrentBet: " + newCurrentBet);
 
   //TODO bruke betMulti til å gjøre opp for ghetto løsning med hvor my man skal bette (den gjør ingen ting nå)
   placeBet();
@@ -62,10 +64,11 @@ function main() {
         .className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
     ) {
       console.log("Ez cash");
-      //document.getElementsByClassName("bet-input__control")[1].click(); //BET001
+      //TODO DENNE FUNKER; MEN TRYKKER BARE EN GANG PÅ 0.01 (Bare Å LEGGE TIL EN FOR-LØKKE)
+      document.getElementsByClassName("bet-input__control")[1].click(); //BET001
 
       //betMulti = 1;
-      currentBet = 0.01;
+      currentBet = document.getElementById("setCurrentBet").value;
       processCounter = 0;
     }
     //If lose
