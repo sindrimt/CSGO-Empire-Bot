@@ -36,7 +36,7 @@
 }
 
 #minimize {
-  top: 12px;
+  top: 2px;
   font-size: 15px;
   position: absolute;
   right: 50px;
@@ -44,13 +44,14 @@
 }
 
 #maximize {
-  top: 12px;
+  top: 2px;
   font-size: 15px;
   position: absolute;
   right: 10px;
   color: rgba(234, 234, 234, 0.605);
 }
 /* Vært kult å adda fade transition */
+
 /* .m-fadeOut {
   visibility: hidden;
   opacity: 0;
@@ -72,4 +73,34 @@
   color: gray;
   width: 100px;
   padding: 5px;
+}
+
+#desc1 {
+  position: absolute;
+  left: 120px;
+  top: 43px;
+  color: gray;
+}
+
+#desc2 {
+  position: absolute;
+  left: 120px;
+  top: 83px;
+  color: gray;
+}
+
+#errorMsg {
+  position: absolute;
+  left: 30px;
+  top: 135px;
+  color: red;
+  visibility: hidden;
+}
+
+#botStart {
+  position: absolute;
+  left: 30px;
+  top: 135px;
+  color: lightskyblue;
+  visibility: hidden;
 }
