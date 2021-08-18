@@ -10,14 +10,16 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     /* Returnerer true hvis forrige resultat var CT, ellers false */ //*  document.getElementsByClassName("previous-rolls-item")[19].children[0].className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
     /* Navnet til CT-Coin */ //* document.getElementsByClassName("previous-rolls-item")[19].children[0].className
     /* Bet 0.01 (Bytt index for høyere value) */ //* document.getElementsByClassName("bet-input__control")[1]
-    /* Balance */ //* document.getElementsByClassName("whitespace-no-wrap font-numeric")[1].innerText
+    /* Balance */ //* document.getElementsByClassName("user-action absolute")[0].innerText
     // HEI DETTE SKAL VISES I COMMITEN
 
     // Globals init
 
     var bodyEL = document.querySelector("body");
     var mainClickCounter = 0;
-
+    var maxLoss = 0;
+    var currentBet = 0;
+    var newCurrentBet = 0; //TODO Herererre -----------------------
     /* var clickStartTracker = 0,
   currentBet = 0.2,
   startingBet = 0.01,
@@ -27,8 +29,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     function main() {
       // variabler som endres
       var processCounter = 1;
-      var currentBet = 0.01;
-      var maxLoss = 0;
+      var currentBet = newCurrentBet; //TODO herererer -------------------
+      console.log("CurrentBet: " + newCurrentBet);
+
       //TODO bruke betMulti til å gjøre opp for ghetto løsning med hvor my man skal bette (den gjør ingen ting nå)
       placeBet();
 
@@ -66,10 +69,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
             .className == "inline-block w-24 h-24 rounded-full ml-1 coin-ct"
         ) {
           console.log("Ez cash");
-          //document.getElementsByClassName("bet-input__control")[1].click(); //BET001
+          //TODO DENNE FUNKER; MEN TRYKKER BARE EN GANG PÅ 0.01 (Bare Å LEGGE TIL EN FOR-LØKKE)
+          document.getElementsByClassName("bet-input__control")[1].click(); //BET001
 
           //betMulti = 1;
-          currentBet = 0.01;
+          currentBet = document.getElementById("setCurrentBet").value;
           processCounter = 0;
         }
         //If lose
@@ -114,9 +118,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       function placeBet() {
         // Passer på at man ikke kan bette mer enn man har
         if (
-          currentBet > //TODO ENDRE TILBAKE TIL > (BARE FOR TESTING NÅ)
-          document.getElementsByClassName("whitespace-no-wrap font-numeric")[1]
-            .innerText
+          currentBet >
+          document.getElementsByClassName("user-action absolute")[0].innerText
         ) {
           console.log("Not enough money to bet");
           return;
@@ -166,14 +169,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     function startMain() {
       //TODO Denne HER TROR JEG IKKE FAKTISK SENDER VAR VALUES TIL MAIN - SÅ SJEKK DET !!!!
       //Kjører main function om knappen blir trykket
-      currentBet = document.getElementById("setCurrentBet").value;
+      newCurrentBet = document.getElementById("setCurrentBet").value;
       maxLoss = document.getElementById("setMaxLoss").value;
-
       //Bruh ekkel validation men fuck it d funke
       if (
         mainClickCounter >= 1 ||
-        currentBet > 1 ||
-        currentBet <= 0 ||
+        newCurrentBet > 1 ||
+        newCurrentBet <= 0 ||
         maxLoss <= 0 ||
         maxLoss > 10 ||
         document.getElementById("setMaxLoss").value == "" ||
@@ -204,7 +206,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         mainClickCounter++;
         console.log("ClickCounter: " + mainClickCounter);
 
-        //main();
+        //TODO Her erererererrer _---------------------
+
+        main();
       }
       //var processCounter = 1;
       //var currentBet = 1; SETTER EVT VARIBALENE HER UTIFRA BRUKERINPUT
