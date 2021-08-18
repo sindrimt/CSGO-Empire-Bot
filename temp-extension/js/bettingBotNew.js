@@ -162,14 +162,29 @@ function elements() {
   var termdiv = document.createElement("div");
   var termbtn = document.createElement("button");
   var divHeader = document.createElement("div");
-  var minimize = document.createElement("button"); //TODO exempel på sette vars i boksen
+
+  var minimize = document.createElement("button");
   var maximize = document.createElement("button");
+
+  var setCurrentBet = document.createElement("input");
+  setCurrentBet.setAttribute("placeholder", "Start Bet");
+  setCurrentBet.setAttribute("type", "number");
+  setCurrentBet.setAttribute("min", 0.01);
+  setCurrentBet.setAttribute("max", 1);
+  setCurrentBet.setAttribute("step", 0.01);
+
+  var setMaxLoss = document.createElement("input");
+  setMaxLoss.setAttribute("placeholder", "Max Loss");
+  setMaxLoss.setAttribute("type", "number");
+  setMaxLoss.setAttribute("min", 1);
+  setMaxLoss.setAttribute("max", 10);
+  setMaxLoss.setAttribute("step", 1);
 
   termdiv.id = "mydiv";
   termbtn.id = "termbtn";
 
-  minimize.innerHTML = "Minimize";
-  maximize.innerHTML = "Maximize";
+  minimize.innerHTML = "Min";
+  maximize.innerHTML = "Max";
 
   termbtn.innerHTML = "Start Bot";
   // termbtn.style.right = 0 + "px";
@@ -178,6 +193,10 @@ function elements() {
 
   divHeader.id = "mydivheader";
   divHeader.textContent = "Drag me!";
+  minimize.id = "minimize";
+  maximize.id = "maximize";
+  setCurrentBet.id = "setCurrentBet";
+  setMaxLoss.id = "setMaxLoss";
 
   /*   termdiv.style.backgroundColor = "lightgrey";
    */
@@ -192,9 +211,13 @@ function elements() {
   minimize.addEventListener("click", minimizeDiv);
   maximize.addEventListener("click", maximizeDiv);
 
+  // ADDPENDS
   bodyEL.appendChild(termdiv);
+
   termdiv.appendChild(divHeader);
   termdiv.appendChild(termbtn);
+  termdiv.appendChild(setCurrentBet);
+  termdiv.appendChild(setMaxLoss);
 
   divHeader.appendChild(minimize);
   divHeader.appendChild(maximize);
@@ -248,15 +271,35 @@ function elements() {
 }
 
 function startMain() {
+  //TODO Denne HER TROR JEG IKKE FAKTISK SENDER VAR VALUES TIL MAIN - SÅ SJEKK DET !!!!
   //Kjører main function om knappen blir trykket
-  mainClickCounter += 1;
-  if (mainClickCounter > 1) {
-    console.log("YOU HAVE CLICKED THE BUTTON TOO MANY TIMES !§!!!!!!! ;(");
+  currentBet = document.getElementById("setCurrentBet").value;
+
+  //Bruh ekkel validation men fuck it d funke
+  if (
+    mainClickCounter >= 1 ||
+    currentBet > 1 ||
+    document.getElementById("setMaxLoss").value == "" ||
+    document.getElementById("setCurrentBet").value == "" ||
+    document.getElementById("setMaxLoss").value < 0 ||
+    document.getElementById("setCurrentBet").value < 0
+  ) {
+    console.log(
+      "YOU HAVE CLICKED THE BUTTON TOO MANY TIMES or theCurrentBet is too big :P"
+    );
     return;
   } else {
+    console.log(
+      "Starting currentBet: " + document.getElementById("setCurrentBet").value
+    );
+    console.log(
+      "Starting maxLoss: " + document.getElementById("setMaxLoss").value
+    );
+
     console.log("BOTTEN STARTER NESTE RUNDE!!!!!!! :)");
-    console.log(mainClickCounter);
-    main();
+    mainClickCounter++;
+    console.log("ClickCounter: " + mainClickCounter);
+    //main();
   }
   //var processCounter = 1;
   //var currentBet = 1; SETTER EVT VARIBALENE HER UTIFRA BRUKERINPUT
@@ -266,13 +309,18 @@ function startMain() {
 function minimizeDiv() {
   var div = document.getElementById("mydiv");
   var header = document.getElementById("mydivheader");
+  /*  div.classList.toggle("m-fadeOut"); */
   div.style.visibility = "hidden";
   header.style.visibility = "visible";
+  header.style.border = "solid 1px gray";
+  /* header.style.visibility = "visible";
+  header.style.opacity = 1; */
 }
 function maximizeDiv() {
   var div = document.getElementById("mydiv");
   var header = document.getElementById("mydivheader");
   div.style.visibility = "visible";
   header.style.visibility = "visible";
+  header.style.border = "none";
 }
 elements();
