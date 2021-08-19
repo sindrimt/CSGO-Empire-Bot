@@ -11,7 +11,7 @@ using it until I release the extension publicly
 <h4>Currently waiting for Google Chrome confirmation</h4>
 <b></b>It is likely that chrome won't accept this extension, but fear not!<br>
 You can still use it. <b>Just paste the content of temp-extension/js/bettingBotNew.js<br> 
-in the console of https://csgoempire.com/</b><br>
+in the console of https://csgoempire.com/</b><br><br>
 <b>## Detailed Description</b><br>
 
 - A simple bot that that uses the Martingale System
