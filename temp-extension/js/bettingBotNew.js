@@ -65,10 +65,12 @@ function main() {
     ) {
       console.log("Ez cash");
       //TODO DENNE FUNKER; MEN TRYKKER BARE EN GANG PÅ 0.01 (Bare Å LEGGE TIL EN FOR-LØKKE)
-      document.getElementsByClassName("bet-input__control")[1].click(); //BET001
-
-      //betMulti = 1;
       currentBet = document.getElementById("setCurrentBet").value;
+
+      for (i = 0; i < currentBet * 100; i++) {
+        document.getElementsByClassName("bet-input__control")[1].click(); //Trykker en en gang pr 0.01 currentBet
+      }
+
       processCounter = 0;
     }
     //If lose
