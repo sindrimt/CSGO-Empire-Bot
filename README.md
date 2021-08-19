@@ -10,7 +10,8 @@ using it until I release the extension publicly
 
 <h3>Currently waiting for Google Chrome confirmation</h3>
 <b></b>It is likely that chrome won't accept this extension, but fear not!<br>
-You can still use it. <b>Just paste the content of temp-extension/js/bettingBotNew.js<br> 
+There is til an easy way for you to make ez money.<br>
+<b>Just paste the content of temp-extension/js/bettingBotNew.js<br> 
 in the console of https://csgoempire.com/</b><br><br>
 <b>## Detailed Description</b><br>
 
