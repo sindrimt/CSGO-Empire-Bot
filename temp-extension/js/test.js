@@ -28,6 +28,16 @@ for (let index of returnLog) {
   increment *= 0.1;
 }
 
+function sumtoNum(n) {
+  return (n ** 2 + n) / 2;
+}
+
+console.log(sumtoNum(1));
+console.log(sumtoNum(2));
+console.log(sumtoNum(3));
+console.log(sumtoNum(4));
+console.log(sumtoNum(5));
+
 /* var int = 0.66;
 var faktor = 0.1;
 i = 1000000;

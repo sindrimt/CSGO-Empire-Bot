@@ -20,3 +20,5 @@ in the console of https://csgoempire.com/</b><br><br>
 - If the bet is lost, it doubles the bet until it wins
 
 In da making
+
+Video explaining the theory: https://www.youtube.com/watch?v=zTsRGQj6VT4
