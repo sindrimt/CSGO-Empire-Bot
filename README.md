@@ -7,7 +7,7 @@ using it until I release the extension publicly
 <br><br>
 <b>## Detailed Description</b><br>
 
-- A simple bot that that uses the Martingale System<br>
+- A simple bot that that uses the Martingale System
 - It places a set amout, and bets on CT-side every time
 - If the bet is lost, it doubles the bet until it wins
 
