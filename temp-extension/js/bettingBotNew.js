@@ -51,7 +51,7 @@ function main() {
     } else if (processCounter == 4) {
       if (endOfRound()) {
         console.log("ENDOFROUND");
-        document.getElementsByClassName("bet-btn")[0].click(); //Make Bet
+        document.getElementsByClassName("bet-btn")[0].click(); //Make bbBet
         processCounter = 1;
       }
     }
