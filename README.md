@@ -5,4 +5,10 @@ Extension coming soon yep<br><br>
 Feel free to copy the source code, but you will have to wait<br>
 using it until I release the extension publicly
 <br><br>
+<b>## Detailed Description</b><br>
+
+- A simple bot that that uses the Martingale System<br>
+- It places a set amout, and bets on CT-side every time
+- If the bet is lost, it doubles the bet until it wins
+
 In da making
