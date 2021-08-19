@@ -4,9 +4,9 @@
   "version": "0.1",
   "description": "Automatic csgo betting bot",
   "icons": {
-    "16": "imgs/img1.png",
-    "48": "imgs/img1.png",
-    "128": "imgs/img1.png"
+    "16": "imgs/ttt.png",
+    "48": "imgs/ttt.png",
+    "128": "imgs/ttt.png"
   },
   "content_scripts": [
     {
