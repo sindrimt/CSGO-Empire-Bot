@@ -15,7 +15,7 @@ in the console of https://csgoempire.com/</b><br><br>
 - It places a set amout, and bets on CT-side every time
 - If the bet is lost, it doubles the bet until it wins
 
-<h3>How you can upload it yourself:</h3>
+<h3>How you can upload it yourself locally:</h3>
 <b>Step 1:</b> Clone the project<br><br>
 <b>Step 2:</b> Navigate to the extension icon in the top right corner<img src = "temp-extension/imgs/step1.png" width="350px">
 <b>Step 3:</b> Click "Load unpacked" in the top left corner (make sure you have developer mode on)<img src = "temp-extension/imgs/step2.png" width="650px">
