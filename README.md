@@ -18,5 +18,5 @@ in the console of https://csgoempire.com/</b><br><br>
 <h3>How you can upload it yourself:</h3>
 <b>Step 1:</b> Clone the project<br><br>
 <b>Step 2:</b> Navigate to the extension icon in the top right corner<img src = "temp-extension/imgs/step1.png" width="350px">
-<b>Step 3:</b> Click "Load unpacked" in the top left corner<img src = "temp-extension/imgs/step2.png" width="350px">
+<b>Step 3:</b> Click "Load unpacked" in the top left corner (make sure you have developer mode on)<img src = "temp-extension/imgs/step2.png" width="350px"><img src = "temp-extension/imgs/step4.png" width="250px">
 <b>Step 4:</b> Choose temp-extension (Important for it to work) Aaand ur done :P<img src = "temp-extension/imgs/step3.png" width="700px">
