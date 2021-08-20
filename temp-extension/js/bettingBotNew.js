@@ -14,7 +14,7 @@ var bodyEL = document.querySelector("body");
 var mainClickCounter = 0;
 var maxLoss = 0;
 var currentBet = 0;
-var newCurrentBet = 0; //TODO Herererre -----------------------
+var newCurrentBet = 0;
 /* var clickStartTracker = 0,
   currentBet = 0.2,
   startingBet = 0.01,
@@ -24,7 +24,7 @@ var newCurrentBet = 0; //TODO Herererre -----------------------
 function main() {
   // variabler som endres
   var processCounter = 1;
-  var currentBet = newCurrentBet; //TODO herererer -------------------
+  var currentBet = newCurrentBet;
   console.log("CurrentBet: " + newCurrentBet);
 
   //TODO bruke betMulti til å gjøre opp for ghetto løsning med hvor my man skal bette (den gjør ingen ting nå)
