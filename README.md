@@ -2,11 +2,6 @@
 
 <b>Hello do you want infinite money?</b><br>
 
-Then i would suggest you to try this epicness :)<br>
-Extension coming soon yep<br><br>
-Feel free to copy the source code, but you will have to wait<br>
-using it until I release the extension publicly
-<br>
 Video explaining the theory: https://www.youtube.com/watch?v=zTsRGQj6VT4<br>
 
 <h3>Currently waiting for Google Chrome confirmation</h3>
