@@ -20,5 +20,6 @@ in the console of https://csgoempire.com/</b><br><br>
 - It places a set amout, and bets on CT-side every time
 - If the bet is lost, it doubles the bet until it wins
 
-<!-- <br><h3>How you can upload it yourself:</h3>
-<b>Step1</b>: Clone the project -->
+<br><h3>How you can upload it yourself:</h3>
+<b>Step1: Clone the project</b><br>
+<b>Step2: <img src = "step2.png" width="200px" heigth="200px"></b><br>
