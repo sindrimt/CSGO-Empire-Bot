@@ -21,5 +21,7 @@ in the console of https://csgoempire.com/</b><br><br>
 - If the bet is lost, it doubles the bet until it wins
 
 <br><h3>How you can upload it yourself:</h3>
-<b>Step1: Clone the project</b><br>
+<b>Step1: Clone the project</b><br><br>
 <b>Step2: <img src = "temp-extension/imgs/step2.png" width="200px" heigth="200px"></b><br>
+<b>Step3: <img src = "temp-extension/imgs/step3.png" width="200px" heigth="200px"></b><br>
+<b>Step4: <img src = "temp-extension/imgs/step4.png" width="200px" heigth="200px"></b><br>
