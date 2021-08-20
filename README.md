@@ -7,6 +7,7 @@ Extension coming soon yep<br><br>
 Feel free to copy the source code, but you will have to wait<br>
 using it until I release the extension publicly
 <br>
+Video explaining the theory: https://www.youtube.com/watch?v=zTsRGQj6VT4<br>
 
 <h3>Currently waiting for Google Chrome confirmation</h3>
 <b></b>It is likely that chrome won't accept this extension, but fear not!<br>
@@ -19,6 +20,5 @@ in the console of https://csgoempire.com/</b><br><br>
 - It places a set amout, and bets on CT-side every time
 - If the bet is lost, it doubles the bet until it wins
 
-In da making
-<img src = "temp-extension/imgs/appImage.png">
-Video explaining the theory: https://www.youtube.com/watch?v=zTsRGQj6VT4
+<!-- <br><h3>How you can upload it yourself:</h3>
+<b>Step1</b>: Clone the project -->
