@@ -22,6 +22,6 @@ in the console of https://csgoempire.com/</b><br><br>
 
 <h3>How you can upload it yourself:</h3>
 <b>Step 1:</b> Clone the project<br><br>
-<b>Step 2:</b> Navigate to the extension icon in the to right corner<img src = "temp-extension/imgs/step1.png" >
-<b>Step 3:</b> <img src = "temp-extension/imgs/step2.png">
-<b>Step 4:</b> <img src = "temp-extension/imgs/step3.png">
+<b>Step 2:</b> Navigate to the extension icon in the top right corner<img src = "temp-extension/imgs/step1.png" width="200px" heigth="200px">
+<b>Step 3:</b> <img src = "temp-extension/imgs/step2.png" width="200px" heigth="200px">
+<b>Step 4:</b> <img src = "temp-extension/imgs/step3.png" width="200px" heigth="200px">
