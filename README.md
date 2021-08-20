@@ -22,4 +22,4 @@ in the console of https://csgoempire.com/</b><br><br>
 
 <br><h3>How you can upload it yourself:</h3>
 <b>Step1: Clone the project</b><br>
-<b>Step2: <img src = "step2.png" width="200px" heigth="200px"></b><br>
+<b>Step2: <img src = "temp-extension/imgs/step2.png" width="200px" heigth="200px"></b><br>
